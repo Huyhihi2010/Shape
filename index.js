@@ -30,12 +30,12 @@ function RandomFloor(cost) {
 }
 
 class Player{
-    constructor(x, y, size, color, side) {
+    constructor(x, y, size, color) {
         this.x = x;
         this.y = y;
         this.size = size;
         this.color = color;
-        this.side = side;
+        this.side = 8;
         this.angle = 0;
     }
     draw() {
@@ -66,7 +66,7 @@ class Player{
     }
 }
 
-const player = new Player(canvas.width / 2, canvas.height / 2, 20, 'white', 3);
+const player = new Player(canvas.width / 2, canvas.height / 2, 20, 'white');
 
 // Projectile Dan
 
