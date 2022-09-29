@@ -414,20 +414,20 @@ addEventListener('click', (event) => {
     }
 })
 
-addEventListener('keydown', ({key}) => {
-    switch (key) {
-        case ' ':
-            for(var i = 0; i < 64; i++) {
-                const angle = Math.atan2(mouseY - canvas.height / 2, mouseX - canvas.width / 2);
-                const velocity = {
-                    x: Math.cos(angle) * 10,
-                    y: Math.sin(angle) * 10,
-                }
-                projectiles.push(new Projectile(player.x, player.y, player.color, player.size, {x: Math.cos(angle + i / 10) * 5, y: Math.sin(angle + i / 10) * 5}, player.angle, player.side));
-            }
-            break;
-    }
-})
+// addEventListener('keydown', ({key}) => {
+//     switch (key) {
+//         case ' ':
+//             for(var i = 0; i < 64; i++) {
+//                 const angle = Math.atan2(mouseY - canvas.height / 2, mouseX - canvas.width / 2);
+//                 const velocity = {
+//                     x: Math.cos(angle) * 10,
+//                     y: Math.sin(angle) * 10,
+//                 }
+//                 projectiles.push(new Projectile(player.x, player.y, player.color, player.size, {x: Math.cos(angle + i / 10) * 5, y: Math.sin(angle + i / 10) * 5}, player.angle, player.side));
+//             }
+//             break;
+//     }
+// })
 
 // resize
 
