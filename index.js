@@ -30,12 +30,12 @@ function RandomFloor(cost) {
 }
 
 class Player{
-    constructor(x, y, size, color) {
+    constructor(x, y, size, color, side) {
         this.x = x;
         this.y = y;
         this.size = size;
         this.color = color;
-        this.side = 8;
+        this.side = side;
         this.angle = 0;
     }
     draw() {
@@ -66,7 +66,7 @@ class Player{
     }
 }
 
-const player = new Player(canvas.width / 2, canvas.height / 2, 20, 'white');
+const player = new Player(canvas.width / 2, canvas.height / 2, 20, 'white', 3);
 
 // Projectile Dan
 
@@ -417,14 +417,14 @@ addEventListener('click', (event) => {
 // addEventListener('keydown', ({key}) => {
 //     switch (key) {
 //         case ' ':
-//             for(var i = 0; i < 64; i++) {
-//                 const angle = Math.atan2(mouseY - canvas.height / 2, mouseX - canvas.width / 2);
-//                 const velocity = {
-//                     x: Math.cos(angle) * 10,
-//                     y: Math.sin(angle) * 10,
-//                 }
-//                 projectiles.push(new Projectile(player.x, player.y, player.color, player.size, {x: Math.cos(angle + i / 10) * 5, y: Math.sin(angle + i / 10) * 5}, player.angle, player.side));
-//             }
+            // for(var i = 0; i < 64; i++) {
+            //     const angle = Math.atan2(mouseY - canvas.height / 2, mouseX - canvas.width / 2);
+            //     const velocity = {
+            //         x: Math.cos(angle) * 10,
+            //         y: Math.sin(angle) * 10,
+            //     }
+            //     projectiles.push(new Projectile(player.x, player.y, player.color, player.size, {x: Math.cos(angle + i / 10) * 5, y: Math.sin(angle + i / 10) * 5}, player.angle, player.side));
+            // }
 //             break;
 //     }
 // })
