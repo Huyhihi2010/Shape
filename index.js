@@ -15,7 +15,7 @@ setInterval(() => {
     } else {
         StartClicked = true;
     }
-}, 250)
+}, 100)
 
 // Cài đặt canvas
 
