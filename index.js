@@ -6,6 +6,17 @@ const BigScoreEl = document.getElementById('BigScoreEl');
 const StartGameBtn = document.getElementById('StartGameBtn');
 const Over_nav = document.getElementById('Over-nav');
 
+var Clicked = 0;
+var StartClicked = true;
+
+setInterval(() => {
+    if(Clicked > 0) {
+        Clicked--;
+    } else {
+        StartClicked = true;
+    }
+}, 100)
+
 // Cài đặt canvas
 
 canvas.width = innerWidth;
@@ -288,6 +299,10 @@ function animate() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     player.update();
     player.angle += 4;
+    if(Clicked > 50) {
+        StartClicked = false;
+        alert('Stop Auto Click!');
+    }
     paricles.forEach((paricle, index) => {
         if(paricle.alpha > 0) {
             paricle.update();
@@ -395,22 +410,25 @@ StartGameBtn.addEventListener('click', () => {
 })
 
 addEventListener('click', (event) => {
-    const angle = Math.atan2(event.clientY - canvas.height / 2, event.clientX - canvas.width / 2);
-    const velocity = {
-        x: Math.cos(angle) * 10,
-        y: Math.sin(angle) * 10,
-    }
-
-    if(score >= 20000) {
-        if(score >= 100000) {
-            projectiles.push(new Projectile(canvas.width / 2, canvas.height / 2, player.color, player.size * 4, velocity, player.angle, player.side));
-        } else {
-            projectiles.push(new Projectile(canvas.width / 2, canvas.height / 2, player.color, player.size * 2, velocity, player.angle, player.side));
-            projectiles.push(new Projectile(canvas.width / 2, canvas.height / 2, player.color, player.size, {x: Math.cos(angle + 0.8) * 10, y: Math.sin(angle + 0.8) * 10}, player.angle, player.side));
-            projectiles.push(new Projectile(canvas.width / 2, canvas.height / 2, player.color, player.size, {x: Math.cos(angle - 0.8) * 10, y: Math.sin(angle - 0.8) * 10}, player.angle, player.side));
+    if(StartClicked) {
+        const angle = Math.atan2(event.clientY - canvas.height / 2, event.clientX - canvas.width / 2);
+        const velocity = {
+            x: Math.cos(angle) * 10,
+            y: Math.sin(angle) * 10,
         }
-    } else {
-        projectiles.push(new Projectile(canvas.width / 2, canvas.height / 2, player.color, player.size, velocity, player.angle, player.side));
+
+        if(score >= 20000) {
+            if(score >= 100000) {
+                projectiles.push(new Projectile(canvas.width / 2, canvas.height / 2, player.color, player.size * 4, velocity, player.angle, player.side));
+            } else {
+                projectiles.push(new Projectile(canvas.width / 2, canvas.height / 2, player.color, player.size * 2, velocity, player.angle, player.side));
+                projectiles.push(new Projectile(canvas.width / 2, canvas.height / 2, player.color, player.size, {x: Math.cos(angle + 0.8) * 10, y: Math.sin(angle + 0.8) * 10}, player.angle, player.side));
+                projectiles.push(new Projectile(canvas.width / 2, canvas.height / 2, player.color, player.size, {x: Math.cos(angle - 0.8) * 10, y: Math.sin(angle - 0.8) * 10}, player.angle, player.side));
+            }
+        } else {
+            projectiles.push(new Projectile(canvas.width / 2, canvas.height / 2, player.color, player.size, velocity, player.angle, player.side));
+        }
+        Clicked += 1;
     }
 })
 
