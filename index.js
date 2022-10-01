@@ -299,7 +299,7 @@ function animate() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     player.update();
     player.angle += 4;
-    if(Clicked > 50) {
+    if(Clicked > 5) {
         StartClicked = false;
         alert('Stop Auto Click!');
     }
